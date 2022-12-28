@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
 def filter_wrong_sender(mailbox):
     '''Filters emails from the wrong senders (ex: Fwd, Re). Returns list of emails, # of original emails, # of filtered emails'''
     senders = [message['from'] for message in mailbox]
@@ -36,3 +39,14 @@ def message_cleanup(mail_list):
                 content_list.append(content.lower())
 
     return content_list 
+
+def create_word_cloud(word_list, output_path=None):
+    '''Generate a word cloud from a given list of words. If no output path is specified display the image, otherwise save it to a file.'''
+    word_cloud = WordCloud(background_color='white',width=800,height=400).generate(' '.join(word_list))
+    plt.axis('off')
+    plt.imshow(word_cloud)
+
+    if not output_path:
+        plt.show()
+    else:
+        plt.savefig(output_path)

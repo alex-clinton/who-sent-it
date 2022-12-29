@@ -40,6 +40,16 @@ def message_cleanup(mail_list):
 
     return content_list 
 
+def unknown_email_words(path='mail_data/new_message.txt'):
+    unknown_email_words = []
+
+    with open(path) as new_message:
+        clean_lines = [line.strip() for line in new_message]
+        for line in clean_lines:
+            unknown_email_words += line.split()
+    
+    return unknown_email_words
+
 def create_word_cloud(word_list, output_path=None):
     '''Generate a word cloud from a given list of words. If no output path is specified display the image, otherwise save it to a file.'''
     word_cloud = WordCloud(background_color='white',width=800,height=400).generate(' '.join(word_list))

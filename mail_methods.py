@@ -52,7 +52,7 @@ def unknown_email_words(path='mail_data/new_message.txt'):
 
 def create_word_cloud(word_list, output_path=None):
     '''Generate a word cloud from a given list of words. If no output path is specified display the image, otherwise save it to a file.'''
-    word_cloud = WordCloud(background_color='white',width=800,height=400).generate(' '.join(word_list))
+    word_cloud = WordCloud(background_color='white', width=800, height=400).generate(' '.join(word_list))
     plt.axis('off')
     plt.imshow(word_cloud)
 

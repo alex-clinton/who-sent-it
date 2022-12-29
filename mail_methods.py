@@ -23,22 +23,22 @@ def filter_wrong_sender(mailbox):
 
 def message_cleanup(mail_list):
     '''Cleans up the email body text by removing new lines and punctuation. Returns a list of lowercase plaintext email bodies.'''
-    content_list = []
+    body_list = []
 
     for message in mail_list:
-        messy_content = message.get_payload()[0].get_payload(decode=True)
+        messy_body = message.get_payload()[0].get_payload(decode=True)
         # Discard null messages
-        if messy_content:
-            content = messy_content.decode('utf-8').strip()
+        if messy_body:
+            body = messy_body.decode('utf-8').strip()
             bad_characters = ['\r\n', '\n\n', '\n', ',' , ';' , ':' , '!' , '"' , '?' , '.' , '(' , ')' , '*']
 
             for char in bad_characters:
-                content = content.replace(char, ' ')
+                body = body.replace(char, ' ')
 
-            if len(content):
-                content_list.append(content.lower())
+            if len(body):
+                body_list.append(body.lower())
 
-    return content_list 
+    return body_list 
 
 def unknown_email_words(path='mail_data/new_message.txt'):
     unknown_email_words = []
@@ -50,8 +50,12 @@ def unknown_email_words(path='mail_data/new_message.txt'):
     
     return unknown_email_words
 
-def create_word_cloud(word_list, output_path=None):
-    '''Generate a word cloud from a given list of words. If no output path is specified display the image, otherwise save it to a file.'''
+def create_word_cloud(email_bodies, output_path=None):
+    '''Generate a word cloud from a list of email bodies. If no output path is specified display the image, otherwise save it to a file.'''
+    word_list = []
+    for body in email_bodies:
+        word_list += body.split()
+
     word_cloud = WordCloud(background_color='white', width=800, height=400).generate(' '.join(word_list))
     plt.axis('off')
     plt.imshow(word_cloud)

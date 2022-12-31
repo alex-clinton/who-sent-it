@@ -8,7 +8,7 @@ Code to identify which of two senders wrote a given email. Sample emails from bo
 - Matplotlib
 - Scikit-learn
 - Wordcloud
-- Mailbox?
+- Mailbox
 
 ## Setup/Execution
 

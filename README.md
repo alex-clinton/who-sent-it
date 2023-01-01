@@ -3,7 +3,7 @@ Code to identify which of two senders wrote a given email. Sample emails from bo
 
 ## Requirements
 
-- Python 3
+- Python 3.6
 - Numpy
 - Matplotlib
 - Scikit-learn

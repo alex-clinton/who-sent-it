@@ -16,7 +16,7 @@ Code to identify which of two senders wrote a given email. Sample emails from bo
 ```
 python3 -m venv ./venv
 source venv/Scripts/activate
-pip -r requirements.txt
+pip install -r requirements.txt
 ```
 2. Run predict.py with the .mbox files for the two possible senders and the unknown plaintext message.
 ```
